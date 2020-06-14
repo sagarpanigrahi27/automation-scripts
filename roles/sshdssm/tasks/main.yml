@@ -1,0 +1,29 @@
+---
+# tasks file for sshdssm
+  - name: Install SSM agent
+    yum:
+      name: "https://s3.amazonaws.com/ec2-downloads-windows/SSMAgent/latest/linux_amd64/amazon-ssm-agent.rpm"
+      state: present
+
+  - name: Enable amazon-ssm-agent service
+    service:
+      name: amazon-ssm-agent
+      enabled: yes
+
+  - name: Copy sshd config file Script to remote machine
+    copy:
+      src: templates/sshd_config.sh
+      dest: /home/svc_awsmigfactory/
+      owner: svc_awsmigfactory
+      group: svc_awsmigfactory
+      mode: '0755'
+
+  - name: Run the script to update sshd config
+    become: true
+    command: sh /home/svc_awsmigfactory/sshd_config.sh
+
+
+  - name: Restart service sshd
+    service:
+      name: sshd
+      state: restarted

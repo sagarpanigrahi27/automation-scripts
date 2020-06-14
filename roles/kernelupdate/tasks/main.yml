@@ -1,0 +1,11 @@
+---
+# tasks file for kernelupdate
+  - name: Update kernel
+    yum:
+     name: kernel
+     state: latest
+
+  - name: Reboot after kernel update
+    reboot:
+      reboot_timeout: 1800
+

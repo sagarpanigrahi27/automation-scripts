@@ -1,0 +1,21 @@
+---
+- name: Run Prewig Validator
+  hosts: all
+  become: true
+  gather_facts: no
+
+  roles: 
+#    - {role: 'dracuthostonly', tags: 'dracuthostonly'}
+    - {role: 'rootawsfolder', tags: 'rootawsfolder'}
+    - {role: 'etcresolv', tags: 'etcresolv'}
+    - {role: 'prepareforwigs', tags: 'prepare'}
+    - {role: 'rhelsubscription', tags: 'rhsm'}
+    - {role: 'removessm', tags: 'removessm'}
+    - {role: 'sshdssm', tags: 'sshdssm'}
+#    - {role: 'uninstallapps', tags: 'uninstallapps'} 
+#    - {role: 'enaprereq', tags: 'enaprereq'}
+#    - {role: 'enapostreboot', tags: 'enapostreboot'}
+#    - {role: 'efadriver', tags: 'efadriver'}
+    - {role: 'setupvalidator', tags: 'setupvalidator'}
+    - {role: 'runvalidator', tags: 'runvalidator'}
+    - {role: 'remove70net', tags: 'remove70net'}

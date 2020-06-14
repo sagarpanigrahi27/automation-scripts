@@ -1,0 +1,18 @@
+---
+- name: Run Prewig Validator
+  hosts: all
+#  become: true
+  gather_facts: no
+
+#  tasks:
+#    - name: RRemove softwares
+#      win_shell: C:\post_migration\uninstall-software-tools.ps1
+  
+
+  roles: 
+    - {role: 'winstepone', tags: 'winstepone'}
+    - {role: 'disableadmin', tags: 'disableadmin'}
+    - {role: 'removeawscred', tags: 'removeawscred'}
+    - {role: 'wininstallpackages', tags: 'wininstallpackages'}
+    - {role: 'winrunvalidator', tags: 'winrunvalidator'}
+    - {role: 'fixpathvariable', tags: 'fixpathvariable'}

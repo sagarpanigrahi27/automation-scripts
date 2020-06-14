@@ -1,0 +1,8 @@
+---
+# tasks file for remove70net
+- name: Remove 70 net rule
+  file:
+    state: absent
+    path: /etc/udev/rules.d/70-persistent-net.rules
+
+

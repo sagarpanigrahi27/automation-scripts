@@ -1,0 +1,42 @@
+---
+# tasks file for efadriver
+  - name: Remove old driver folder
+    command: mv amzn-drivers amzn-driver-old
+    args:
+      chdir: /var/tmp
+      removes: /var/tmp/amzn-drivers
+      creates: /va/tmp/amzn-driver-old
+
+  - name: Install Git
+    yum:
+     name: "{{item}}"
+     state: present  
+    with_items:
+      - 'git'
+      - 'patch'
+      - 'rpm-build'
+      - 'wget'
+      - 'gcc'
+
+  - name: Clone latest drivers
+    command: git clone https://github.com/amzn/amzn-drivers.git
+    args:
+      chdir: /var/tmp
+      creates: /var/tmp/amzn-drivers
+  
+  - name: Make EFA driver
+    command: make
+    args:
+      chdir: /var/tmp/amzn-drivers/kernel/linux/efa/rpm
+
+  - name: Get EFA file name
+    command: ls /var/tmp/amzn-drivers/kernel/linux/efa/rpm/x86_64/
+    register: op
+
+
+  - name: Install EFA driver
+    yum: 
+      name: /var/tmp/amzn-drivers/kernel/linux/efa/rpm/x86_64/{{op.stdout}}
+      state: present
+  
+

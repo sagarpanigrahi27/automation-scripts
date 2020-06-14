@@ -1,0 +1,20 @@
+---
+# tasks file for enapostreboot
+  - name: Copy enaparttwo step file Script to remote machine
+    copy:
+      src: templates/enaparttwo.sh
+      dest: /root/
+      owner: root
+      group: root
+      mode: '0755'
+
+
+  - name: Run the enaparttwo script
+    command: sh /root/enaparttwo.sh
+    args:
+      chdir: /root
+    register: op2
+
+  - name: Print the result for enaparttwo
+    debug: var=op2.stdout_lines
+

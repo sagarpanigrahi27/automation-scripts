@@ -1,0 +1,21 @@
+---
+# tasks file for rhelsubscription
+  - name: Copy rhel-subscription-manager file Script to remote machine
+    copy:
+      src: templates/rhel-subscription-manager.sh
+      dest: /home/svc_awsmigfactory/
+      owner: svc_awsmigfactory
+      group: svc_awsmigfactory
+      mode: '0755'
+
+  - name: Run the script rhel-subscription-manager
+    #become: true
+    command: sh /home/svc_awsmigfactory/rhel-subscription-manager.sh
+    retries: 3
+    delay: 3
+    register: op
+    until: op.rc == 0
+
+
+  - name: Print the result
+    debug: var=op.stdout_lines

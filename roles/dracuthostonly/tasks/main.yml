@@ -1,0 +1,17 @@
+---
+# tasks file for dracuthostonly
+- name: fetch dracut hostonly value
+  command:  grep -ir 'hostonly="yes"' 01-dist.conf
+  args: 
+    chdir: /usr/lib/dracut/dracut.conf.d/
+  register: dracut_hostonly
+
+- debug:
+    var: dracut_hostonly.stdout
+
+- name: add hostonly=no entry in aws.conf
+  copy:
+    dest: "/etc/dracut.conf.d/aws.conf"
+    content: |
+      hostonly="no"
+  when: dracut_hostonly.stdout is search(".#") != -1

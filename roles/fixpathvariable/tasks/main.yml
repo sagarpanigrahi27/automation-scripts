@@ -1,0 +1,7 @@
+---
+# tasks file for ansible-prewig/roles/fixpathvariable
+- name: Ensure that system32 and Powershell are present on the global system path, and in the specified order
+  win_path:
+    elements:
+    - '%SystemRoot%\system32'
+    - '%SystemRoot%\system32\WindowsPowerShell\v1.0'

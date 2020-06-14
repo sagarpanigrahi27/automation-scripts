@@ -1,0 +1,24 @@
+---
+# tasks file for uninstallapps
+
+  - name: check if vmware uninstall file exists
+    stat: 
+      path: /usr/bin/vmware-uninstall-tools.pl
+    register: vmwarefile
+
+  - name: Run the script to uninstall vmwaretools
+    become: true
+    shell: /usr/bin/vmware-uninstall-tools.pl
+    when: vmwarefile.stat.exists == true
+
+  - name: Find VMWare files to delete
+    find:
+      paths: /usr/bin/
+      patterns: vmware-*
+    register: files_to_delete
+
+  - name: Remove vmware files
+    file:
+      path: "{{ item.path }}"
+      state: absent
+    with_items: "{{ files_to_delete.files }}"

@@ -1,0 +1,18 @@
+---
+# tasks file for prepareforwigs
+  - name: Copy prepare-for-wigs.sh file Script to remote machine
+    copy:
+      src: templates/prepare-for-wigs.sh
+      dest: /home/svc_awsmigfactory/
+      owner: svc_awsmigfactory
+      #group: svc_awsmigfactory
+      mode: '0755'
+
+  - name: Run the script prepare-for-wigs.sh
+    #become: true
+    command: sh /home/svc_awsmigfactory/prepare-for-wigs.sh
+    register: op
+
+  - name: Print the result
+    debug: var=op.stdout_lines
+

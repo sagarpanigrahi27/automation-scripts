@@ -1,0 +1,8 @@
+---
+# tasks file for runvalidator
+  - name: Run the validator
+    shell: |
+      scl enable rh-python36 -- python3 /home/svc_awsmigfactory/Linux_PreWig_Validator/control_script.py --verbose
+    register: ps
+  - name: Print the result
+    debug: var=ps.stdout_lines

@@ -1,0 +1,23 @@
+---
+# tasks file for enaprereq
+  - name: Copy enapartone step file Script to remote machine
+    copy:
+      src: templates/enapartone.sh
+      dest: /root/
+      owner: root
+      group: root
+      mode: '0755'
+
+  - name: Run the enapartone script
+    command: sh /root/enapartone.sh
+    args:
+      chdir: /root
+      creates: /root/amzn-drivers-master
+    register: op
+
+  - name: Print the result for enapartone
+    debug: var=op.stdout_lines
+
+
+
+

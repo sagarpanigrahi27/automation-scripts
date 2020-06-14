@@ -1,0 +1,6 @@
+---
+# tasks file for ansible-prewig/roles/wininstallpackages
+- name: Install aws powershell Toolkit
+  win_package:
+    path: C:\post_migration\AWSToolsAndSDKForNet_sdk-3.3.736.0_ps-4.0.5.0_tk-1.14.5.0.msi
+    state: present

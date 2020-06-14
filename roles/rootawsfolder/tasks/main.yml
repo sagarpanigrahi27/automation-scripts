@@ -1,0 +1,6 @@
+---
+# tasks file for rootawsfolder
+- name: Clear root .aws if present
+  file:
+    state: absent
+    path: /root/.aws

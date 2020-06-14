@@ -1,0 +1,12 @@
+---
+# tasks file for ansible-prewig/roles/winrunvalidator
+- name: Run the Prewig validator
+  win_shell: |
+    Import-Module .\AWSManagedServices.PreWigs.Validation.psm1 -force
+    Invoke-PreWIGsValidation -RunWithoutExitCodes
+  args:
+    chdir: C:\post_migration\AWSManagedServices.PreWigs.Validation
+  register: op
+
+- debug:
+    var: op.stdout_lines

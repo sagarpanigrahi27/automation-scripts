@@ -1,0 +1,11 @@
+---
+# tasks file for step one
+
+- name: Unjoin , Change Name , Deny TSC and disable firewall
+  win_shell: C:\post_migration\remove-computer-from-domain.ps1
+
+- name: Remove VmwareTools, Microsoft Monitoring and Commvault agents
+  win_shell: C:\post_migration\uninstall-software-tools.ps1
+
+- name: Rebooting the server 
+  win_reboot:
