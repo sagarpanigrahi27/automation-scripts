@@ -8,5 +8,14 @@
     chdir: C:\post_migration\AWSManagedServices.PreWigs.Validation
   register: op
 
+- name: Obtain information about sppnp.dll file
+  win_stat:
+    path: C:\windows\system32\sppnp.dll
+  register: file_info
+
+
 - debug:
     var: op.stdout_lines
+
+- debug:
+    var: file_info

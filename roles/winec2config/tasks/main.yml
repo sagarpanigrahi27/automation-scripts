@@ -1,0 +1,17 @@
+---
+# tasks file for ansible-prewig/roles/winec2config
+- name: Uninstall EC2Config if present
+  win_command: Ec2Install.exe /uninstall /quiet
+  args:
+    chdir: C:\post_migration
+
+- name: Clear Ec2Config old data
+  win_file:
+    path: 'C:\Program Files\Amazon\Ec2ConfigService'
+    state: absent
+
+
+- name: Re-install EC2Config Service
+  win_command: Ec2Install.exe /quiet
+  args:
+    chdir: C:\post_migration

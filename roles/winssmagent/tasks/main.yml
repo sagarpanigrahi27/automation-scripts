@@ -1,0 +1,25 @@
+---
+# tasks file for ansible-prewig/roles/winssmagent
+- name: Uninstall SSM Agent if installed
+  win_shell: |
+    $env:SEE_MASK_NOZONECHECKS = 1
+    Start-Process -Wait .\AmazonSSMAgentSetup.exe -ArgumentList "/uninstall /silent" -PassThru
+  args:
+    chdir: C:\post_migration
+
+#- name: Wait for 5 seconds
+#  pause:
+#    seconds: 5
+
+- name: Delete old files for SSM agent
+  win_file:
+    path: C:\ProgramData\Amazon\SSM
+    state: absent
+
+- name: Install Latest Version of SSM Agent
+  win_shell: |
+    $env:SEE_MASK_NOZONECHECKS = 1
+    Start-Process -Wait .\AmazonSSMAgentSetup.exe -ArgumentList "/install /silent" -PassThru
+    Remove-Item env:SEE_MASK_NOZONECHECKS
+  args:
+    chdir: C:\post_migration

@@ -4,3 +4,12 @@
   win_package:
     path: C:\post_migration\AWSToolsAndSDKForNet_sdk-3.3.736.0_ps-4.0.5.0_tk-1.14.5.0.msi
     state: present
+
+- name: Install NVMe,ENA and PV Driver, Server will be rebooted after PV Driver install
+  win_shell: C:\post_migration\install-software-tools.ps1
+  ignore_errors: yes
+
+- name: Wait for system to become reachable over WinRM
+  wait_for_connection:
+    timeout: 900
+
