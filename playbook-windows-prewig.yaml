@@ -8,9 +8,9 @@
     - {role: 'winstepone', tags: 'winstepone'}
     - {role: 'windisableadmin', tags: 'windisableadmin'}
     - {role: 'winremoveawscred', tags: 'winremoveawscred'}
-    - {role: 'wininstallpackages', tags: 'wininstallpackages'}
     - {role: 'winssmagent', tags: 'winssmagent'}
     - {role: 'winec2config', tags: 'winec2config'}
-    - {role: 'winrunvalidator', tags: 'winrunvalidator'}
+    - {role: 'wininstallpackages', tags: 'wininstallpackages'}
     - {role: 'winfixpathvariable', tags: 'winfixpathvariable'}
+    - {role: 'winrunvalidator', tags: 'winrunvalidator'}
    
