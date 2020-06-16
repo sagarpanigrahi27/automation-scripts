@@ -23,7 +23,7 @@
       path: /etc/resolv.conf
       line: "{{ item }}"
     with_items:
-      - 'search ams.otsukamalziad.com'
-      - 'nameserver 10.47.0.62'
-      - 'nameserver 10.47.0.125'
+      - 'search www.exampldomain.com'
+      - 'nameserver 10.XX.XX.XX'
+      - 'nameserver 10.XX.XX.XXX'
 

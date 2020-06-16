@@ -1,0 +1,23 @@
+---
+- name: Run Prewig Validator
+  hosts: all
+  become: true
+  gather_facts: no
+
+  roles: 
+    #Update the role/etcresolv/tasks/main.yml with correct name server for your target machine
+    - {role: 'etcresolv', tags: 'etcresolv'}
+    - {role: 'prepareforwigs', tags: 'prepare'}
+    - {role: 'rhelsubscription', tags: 'rhsm'}
+    - {role: 'sshdssm', tags: 'sshdssm'}
+    # Following Role uninstalls only vmware tools if present
+    - {role: 'uninstallapps', tags: 'uninstallapps'} 
+    #Uncomment enaprereq and enapostreboot roles, if you are trying to convert 
+    #a non nitro instance to a nitro instance as part of the migration
+    #- {role: 'enaprereq', tags: 'enaprereq'}
+    #- {role: 'enapostreboot', tags: 'enapostreboot'}
+    - {role: 'efadriver', tags: 'efadriver'}
+    - {role: 'setupvalidator', tags: 'setupvalidator'}
+    - {role: 'runvalidator', tags: 'runvalidator'}
+    - {role: 'remove70net', tags: 'remove70net'}
+

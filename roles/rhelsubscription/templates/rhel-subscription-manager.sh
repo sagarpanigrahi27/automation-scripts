@@ -33,7 +33,7 @@ yum clean all >/dev/null 2>&1
 echo "Refreshing Subcription Manager..."
 subscription-manager refresh >/dev/null 2>&1
 echo "Registering...."
-subscription-manager register --username RedHatRegistration@otsuka-us.com --password SVJSPp9gZFbzX3ju
+subscription-manager register --username <Rhel subscription Username> --password <Rhel Subcription Password>
 echo "Attach and enable auto attach...."
 subscription-manager auto-attach
 subscription-manager attach
