@@ -42,3 +42,5 @@ Provide the relevant host ips and connection information in the hosts file based
 ###### Windows 2012/2016/2019
 - `ansible-playbook -i hosts -l windows playbook-windows-prewig.yaml`
 
+###### (Optional) Kernel update for RHEL and Centos Servers (if required)
+- `ansible-playbook -i hosts -l windows playbook-kernelupdate.yaml`
